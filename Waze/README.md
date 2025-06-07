@@ -5,7 +5,7 @@
 > **Date:** 2025-06-04  
 > **Project:** Waze User Churn Prediction
 > 
-> _**Note:** Use GitHub’s **Outline** tab (on the right sidebar) to easily navigate through this README’s sections, as it covers extensive content._
+> _📑 Tip: Use GitHub’s Outline tab to quickly navigate through the sections of this README._
 
 # 📌 Context and Objective
 
