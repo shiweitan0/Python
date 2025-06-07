@@ -64,7 +64,7 @@ By analyzing user behavior data and building a predictive model, this project ai
 
 **The goal is to build a machine learning model that identifies users at risk of leaving, enabling Waze to engage them proactively with targeted retention strategies that enhance user satisfaction and drive business growth.**
 
-# 🧪 Methodology
+# 🧭 Roadmap
 
 This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* and *Execute* for a clear and structured analysis.
 
