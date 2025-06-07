@@ -3,9 +3,11 @@
 > 
 > **Author:** Tan Shi Wei  
 > **Date:** 2025-06-04  
-> **Project:** Waze User Churn Prediction  
+> **Project:** Waze User Churn Prediction
+> 
+> _**Note:** Use GitHub’s **Outline** tab (on the right sidebar) to easily navigate through this README’s sections, as it covers extensive content._
 
-# Context and Objective
+# 📌 Context and Objective
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/955e8943-b5e6-4aa4-a70c-fc4c311d5f45" alt="Waze Logo" width="200" height="200" />
@@ -52,7 +54,7 @@ This project focuses on predicting monthly user churn for Waze, a community-driv
   </table>
 </div>
 
-> **Note:** The story, all names, characters, and incidents portrayed in this project are fictitious. No identification with actual persons (living or deceased) is intended or should be inferred. The data shared in this project has been altered for pedagogical purposes.
+> **Note:** All names, characters, and events in this project are fictional. No identification with actual persons (living or deceased) is intended or should be inferred. The data shared in this project has been altered for pedagogical purposes.
 
 By analyzing user behavior data and building a predictive model, this project aims to:
 
@@ -62,7 +64,7 @@ By analyzing user behavior data and building a predictive model, this project ai
 
 **The goal is to build a machine learning model that identifies users at risk of leaving, enabling Waze to engage them proactively with targeted retention strategies that enhance user satisfaction and drive business growth.**
 
-# Methodology
+# 🧪 Methodology
 
 This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* and *Execute* for a clear and structured analysis.
 
@@ -209,16 +211,16 @@ This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* an
 
 </details>
 
-
-# **Data Cleaning**
-
+# 📦 Import Libraries
 
 ```python
-# Import packages for data manipulation
 import pandas as pd
 import numpy as np
+from matplotlib import pyplot as plt
+import seaborn as sns
 ```
 
+# 🧹 Data Cleaning
 
 ```python
 # Load dataset into dataframe
@@ -229,9 +231,6 @@ df = pd.read_csv('../data/waze_dataset.csv')
 ```python
 df.head()
 ```
-
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -338,13 +337,9 @@ df.head()
 </table>
 </div>
 
-
-
-
 ```python
 df.info()
 ```
-
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 14999 entries, 0 to 14998
     Data columns (total 13 columns):
@@ -667,217 +662,113 @@ df[df['label'].notnull()].describe()
 # Get count of null values by device
 df[df['label'].isnull()]['device'].value_counts()
 ```
-
-    device
-    iPhone     447
-    Android    253
-    Name: count, dtype: int64
-
-Out of the 700 null values, there are 447 iPhone and 253 Android users that have null values.
+```plaintext
+device
+iPhone     447
+Android    253
+Name: count, dtype: int64
+```
+Out of the **700 null values**, there are **447 iPhone** and **253 Android** users that have null values.
 
 ```python
 # Calculate % of iPhone nulls and Android nulls
 df[df['label'].isnull()]['device'].value_counts(normalize = True)
 ```
-
-
-
-
     device
     iPhone     0.638571
     Android    0.361429
     Name: proportion, dtype: float64
 
-
-
-
 ```python
 # Calculate % of iPhone users and Android users in full dataset
 df['device'].value_counts(normalize = True)
 ```
-
-
-
-
     device
     iPhone     0.644843
     Android    0.355157
     Name: proportion, dtype: float64
 
-
-
-The percentage of missing values by each device is consistent with their representation in the data overall. There is nothing to suggest a non-random cause of the missing data.
-
-Examine the counts and percentages of users who churned vs. those who were retained. How many of each group are represented in the data?
+The proportion of missing values by device aligns with their overall distribution in the dataset, suggesting the missingness is likely random.
 
 
 ```python
 # Calculate counts of churned vs. retained
 df['label'].value_counts(normalize = True)
 ```
-
-
-
-
     label
     retained    0.822645
     churned     0.177355
     Name: proportion, dtype: float64
 
-
-
-This dataset contains 82% retained users and 18% churned users.
-
-Next, compare the medians of each variable for churned and retained users. The reason for calculating the median and not the mean is that you don't want outliers to unduly affect the portrayal of a typical user. Notice, for example, that the maximum value in the `driven_km_drives` column is 21,183 km. That's more than half the circumference of the earth!
-
+The data has **82% retained** and **18% churned** users.
 
 ```python
 # Calculate median values of all columns for churned and retained users
-print(df[df['label'] == 'retained'].median(numeric_only = True))
-print(df[df['label'] == 'churned'].median(numeric_only = True))
+retained_medians = df[df['label'] == 'retained'].median(numeric_only = True)
+churned_medians = df[df['label'] == 'churned'].median(numeric_only = True)
+comparison_df = pd.concat([retained_medians, churned_medians], axis = 1)
+comparison_df.columns = ['Retained Median', 'Churned Median']
+print(comparison_df)
 ```
 
-    ID                         7509.000000
-    sessions                     56.000000
-    drives                       47.000000
-    total_sessions              157.586756
-    n_days_after_onboarding    1843.000000
-    total_navigations_fav1       68.000000
-    total_navigations_fav2        9.000000
-    driven_km_drives           3464.684614
-    duration_minutes_drives    1458.046141
-    activity_days                17.000000
-    driving_days                 14.000000
-    dtype: float64
-    ID                         7477.500000
-    sessions                     59.000000
-    drives                       50.000000
-    total_sessions              164.339042
-    n_days_after_onboarding    1321.000000
-    total_navigations_fav1       84.500000
-    total_navigations_fav2       11.000000
-    driven_km_drives           3652.655666
-    duration_minutes_drives    1607.183785
-    activity_days                 8.000000
-    driving_days                  6.000000
-    dtype: float64
+                             Retained Median  Churned Median
+    ID                           7509.000000     7477.500000
+    sessions                       56.000000       59.000000
+    drives                         47.000000       50.000000
+    total_sessions                157.586756      164.339042
+    n_days_after_onboarding      1843.000000     1321.000000
+    total_navigations_fav1         68.000000       84.500000
+    total_navigations_fav2          9.000000       11.000000
+    driven_km_drives             3464.684614     3652.655666
+    duration_minutes_drives      1458.046141     1607.183785
+    activity_days                  17.000000        8.000000
+    driving_days                   14.000000        6.000000
     
+* Users who churned averaged ~3 more drives in the last month than retained users, but retained users used the app on over twice as many days as churned users in the same time period.
 
-This offers an interesting snapshot of the two groups, churned vs. retained:
-
-Users who churned averaged ~3 more drives in the last month than retained users, but retained users used the app on over twice as many days as churned users in the same time period.
-
-The median churned user drove ~200 more kilometers and 2.5 more hours during the last month than the median retained user.
-
-It seems that churned users had more drives in fewer days, and their trips were farther and longer in duration. Perhaps this is suggestive of a user profile. Continue exploring!
-
-Calculate the median kilometers per drive in the last month for both retained and churned users.
-
-Begin by dividing the `driven_km_drives` column by the `drives` column. Then, group the results by churned/retained and calculate the median km/drive of each group.
-
+* The median churned user drove ~200 more kilometers and 2.5 more hours during the last month than the median retained user.
 
 ```python
-# Add a column to df called `km_per_drive`
+# Calculate the median, and isolate for km per drive
 df['km_per_drive'] = df['driven_km_drives'] / df['drives']
-# Group by `label`, calculate the median, and isolate for km per drive
 df.groupby(by = 'label').median(numeric_only = True)['km_per_drive']
 ```
-
-
-
-
     label
     churned     74.109416
     retained    75.014702
     Name: km_per_drive, dtype: float64
 
-
-
-The median retained user drove about one more kilometer per drive than the median churned user. How many kilometers per driving day was this?
-
-To calculate this statistic, repeat the steps above using `driving_days` instead of `drives`.
-
-
 ```python
-# Add a column to df called `km_per_driving_day`
+# Calculate the median, and isolate for km per driving day
 df['km_per_driving_day'] = df['driven_km_drives'] / df['driving_days']
-# Group by `label`, calculate the median, and isolate for km per driving day
 df.groupby(by = 'label').median(numeric_only = True)['km_per_driving_day']
 ```
-
-
-
-
     label
     churned     697.541999
     retained    289.549333
     Name: km_per_driving_day, dtype: float64
 
-
-
-Now, calculate the median number of drives per driving day for each group.
-
-
 ```python
-# Add a column to df called `drives_per_driving_day`
-### YOUR CODE HERE ###
+# Calculate the median, and isolate for drives per driving day
 df['drives_per_driving_day'] = df['drives'] / df['driving_days']
-df.head()
-# Group by `label`, calculate the median, and isolate for drives per driving day
-### YOUR CODE HERE ###
 df.groupby(by = 'label').median(numeric_only = True)['drives_per_driving_day']
 ```
-
-
-
-
     label
     churned     10.0000
     retained     4.0625
     Name: drives_per_driving_day, dtype: float64
 
+* Churned users take more drives per driving day (e.g., 10 drives/day vs 4 for retained).
 
+* Each drive is about the same length for both groups (~74–75 km).
 
-The median user who churned drove 698 kilometers each day they drove last month, which is almost ~240% the per-drive-day distance of retained users. The median churned user had a similarly disproporionate number of drives per drive day compared to retained users.
-
-It is clear from these figures that, regardless of whether a user churned or not, the users represented in this data are serious drivers! It would probably be safe to assume that this data does not represent typical drivers at large. Perhaps the data&mdash;and in particular the sample of churned users&mdash;contains a high proportion of long-haul truckers.
-
-In consideration of how much these users drive, it would be worthwhile to recommend to Waze that they gather more data on these super-drivers. It's possible that the reason for their driving so much is also the reason why the Waze app does not meet their specific set of needs, which may differ from the needs of a more typical driver, such as a commuter.
-
-Finally, examine whether there is an imbalance in how many users churned by device type.
-
-Begin by getting the overall counts of each device type for each group, churned and retained.
-
+* Because churned users drive more times per day, their total kilometers per driving day is much higher.
+ 
 
 ```python
 # For each label, calculate the number of Android users and iPhone users
-df.groupby(by = 'label')['device'].value_counts()
-```
-
-
-
-
-    label     device 
-    churned   iPhone     1645
-              Android     891
-    retained  iPhone     7580
-              Android    4183
-    Name: count, dtype: int64
-
-
-
-Now, within each group, churned and retained, calculate what percent was Android and what percent was iPhone.
-
-
-```python
-# For each label, calculate the percentage of Android users and iPhone users
-### YOUR CODE HERE ###
 df.groupby(by = 'label')['device'].value_counts(normalize = True)
 ```
-
-
-
-
     label     device 
     churned   iPhone     0.648659
               Android    0.351341
@@ -885,15 +776,670 @@ df.groupby(by = 'label')['device'].value_counts(normalize = True)
               Android    0.355607
     Name: proportion, dtype: float64
 
-
-
-The ratio of iPhone users and Android users is consistent between the churned group and the retained group, and those ratios are both consistent with the ratio found in the overall dataset.
-
 ## Data overview
 
-* The data contained 700 null values in the `label` column.
-* The median values ensured a fairer comparison as it is resistant to influence from outliers as compared to other evaluation metrics such as mean.
-* I would like to ask the Waze team for more data regarding the churned users, as they have notably higher driving distance and trip count.
-* 64% and 36% of the data consisted of iPhone and Android users respectively.
-* Users who churned travelled much more as compared to users who were retained.
-* The churn rate between iPhone and Android users are comparable.
+* The dataset contains 82% retained and 18% churned users, indicating a significant class imbalance.
+
+* Device distribution is 64% iPhone and 36% Android, with comparable churn rates across both.
+
+* Median values were used for comparisons due to their robustness to outliers.
+
+* The `label` column has 700 missing values.
+
+* Interestingly, churned users drove nearly 240% more kilometers per driving day than retained users, prompting further investigation.
+
+# 📊 Exploratory Data Analysis
+
+## **Visualizations**
+
+```python
+def boxplotter(col, figsize = (5, 2), fliersize = 1):
+    plt.figure(figsize=figsize)
+    sns.boxplot(x = df[col], fliersize = fliersize)
+    plt.tight_layout()
+    plt.show()
+```
+
+
+```python
+def histogrammer(col, figsize = (8, 5), discrete = False, bins = 'auto'):
+    plt.figure(figsize = figsize)
+    sns.histplot(x = df[col], discrete = discrete, bins = bins)
+    plt.tight_layout()
+    plt.show()
+```
+
+### **`sessions`**
+
+_The number of occurrence of a user opening the app during the month_
+
+
+```python
+boxplotter('sessions')
+```
+
+
+    
+![png](output_8_0.png)
+    
+
+
+
+```python
+histogrammer('sessions')
+```
+
+
+    
+![png](output_9_0.png)
+    
+
+
+### **`drives`**
+
+_An occurrence of driving at least 1 km during the month_
+
+
+```python
+boxplotter('drives')
+```
+
+
+    
+![png](output_11_0.png)
+    
+
+
+
+```python
+histogrammer('drives')
+```
+
+
+    
+![png](output_12_0.png)
+    
+
+
+### **`total_sessions`**
+
+_A model estimate of the total number of sessions since a user has onboarded_
+
+
+```python
+boxplotter('total_sessions')
+```
+
+
+    
+![png](output_14_0.png)
+    
+
+
+
+```python
+histogrammer('total_sessions')
+```
+
+
+    
+![png](output_15_0.png)
+    
+
+
+### **`n_days_after_onboarding`**
+
+_The number of days since a user signed up for the app_
+
+
+```python
+boxplotter('n_days_after_onboarding')
+```
+
+
+    
+![png](output_17_0.png)
+    
+
+
+
+```python
+histogrammer('n_days_after_onboarding')
+```
+
+
+    
+![png](output_18_0.png)
+    
+
+
+### **`driven_km_drives`**
+
+_Total kilometers driven during the month_
+
+
+```python
+boxplotter('driven_km_drives')
+```
+
+
+    
+![png](output_20_0.png)
+    
+
+
+
+```python
+histogrammer('driven_km_drives')
+```
+
+
+    
+![png](output_21_0.png)
+    
+
+
+### **`duration_minutes_drives`**
+
+_Total duration driven in minutes during the month_
+
+
+```python
+boxplotter('duration_minutes_drives')
+```
+
+
+    
+![png](output_23_0.png)
+    
+
+
+
+```python
+histogrammer('duration_minutes_drives')
+```
+
+
+    
+![png](output_24_0.png)
+    
+
+
+### **`activity_days`**
+
+_Number of days the user opens the app during the month_
+
+
+```python
+boxplotter('activity_days')
+```
+
+
+    
+![png](output_26_0.png)
+    
+
+
+
+```python
+histogrammer('activity_days', discrete = True)
+```
+
+
+    
+![png](output_27_0.png)
+    
+
+
+### **`driving_days`**
+
+_Number of days the user drives (at least 1 km) during the month_
+
+
+```python
+boxplotter('driving_days')
+```
+
+
+    
+![png](output_29_0.png)
+    
+
+
+
+```python
+histogrammer('driving_days', discrete = True)
+```
+
+
+    
+![png](output_30_0.png)
+    
+
+
+The above variables exhibited histograms that were either right-skewed or uniformly distributed.
+Notable patterns and insights were particularly evident in the following variables:
+- `total_sessions`: The median values in `sessions` and `total_sessions` were ~ 48 and ~160 respectively. This indicates that majority of users used the app in their last month.
+- `activity_days` and `driving_days`: One would expect these two variables share a strong correlation. However, `activity_days` has a uniform distribution, while, `driving_days` has a right skewed one. These discrepancies are apparent at the start and end of the variables respective histograms, where users `activity_days` and `driving_days` do not tally.
+
+### **`device`**
+
+_The type of device a user starts a session with_
+
+
+```python
+plt.figure(figsize = (3,3))
+plt.pie(df['device'].value_counts(), labels = df['device'].value_counts().index, autopct='%1.1f%%')
+plt.axis('equal');
+```
+
+
+    
+![png](output_33_0.png)
+    
+
+
+There are nearly twice as many iPhone users as Android users represented in this data.
+
+### **`label`**
+
+_Binary target variable (“retained” vs “churned”) for if a user has churned anytime during the course of the month_
+
+
+```python
+plt.figure(figsize = (3,3))
+plt.pie(df['label'].value_counts(), labels = df['label'].value_counts().index, autopct='%1.1f%%')
+plt.axis('equal');
+```
+
+
+    
+![png](output_36_0.png)
+    
+
+
+Less than 18% of the users churned.
+
+### **`driving_days` vs. `activity_days`**
+
+
+```python
+plt.figure(figsize = (8,5))
+plt.hist(x = [df['driving_days'], df['activity_days']], bins = 'auto', label = ['driving days', 'activity days'])
+plt.xlabel('counts')
+plt.legend();
+```
+
+
+    
+![png](output_39_0.png)
+    
+
+
+
+```python
+plt.figure(figsize = (8,5))
+sns.stripplot(x = df['driving_days'],
+              y = df['activity_days']);
+```
+
+
+    
+![png](output_40_0.png)
+    
+
+
+The differing maximum values and inconsistencies between `driving_days` and `activity_days` challenge the assumption that these variables are closely aligned. While every driving day is also an activity day, the reverse isn't always true, as users may open the app to check routes or traffic without actually driving. Clarifying this discrepancy with the data team would be important before proceeding with further analysis.
+
+### **Retention by device**
+
+
+```python
+plt.figure(figsize = (8,5))
+sns.histplot(x = df['device'], hue = df['label'], multiple = 'dodge', stat = 'percent')
+plt.legend(labels=['Retained', 'Churned']);
+```
+
+
+    
+![png](output_43_0.png)
+    
+
+
+The proportion of churned users to retained users is consistent between device types.
+
+### **Retention by kilometers driven per driving day**
+
+
+```python
+df['km_per_driving_day'] = df['driven_km_drives'] / df['driving_days']
+df['km_per_driving_day'].describe()
+```
+
+    \\?\C:\Users\Work\AppData\Roaming\jupyterlab-desktop\jlab_server\Lib\site-packages\pandas\core\nanops.py:1016: RuntimeWarning: invalid value encountered in subtract
+      sqr = _ensure_numeric((avg - values) ** 2)
+    
+
+
+
+
+    count    1.499900e+04
+    mean              inf
+    std               NaN
+    min      3.022063e+00
+    25%      1.672804e+02
+    50%      3.231459e+02
+    75%      7.579257e+02
+    max               inf
+    Name: km_per_driving_day, dtype: float64
+
+
+
+The infinity values are due to there being values of zero in the `driving_days` column, where Pandas imputes a value of infinity in the corresponding rows of the new column because division by zero is undefined.
+
+
+```python
+# Convert infinite values to zero
+df.loc[df['km_per_driving_day'] == np.inf, 'km_per_driving_day'] = 0
+df['km_per_driving_day'].describe()
+```
+
+
+
+
+    count    14999.000000
+    mean       578.963113
+    std       1030.094384
+    min          0.000000
+    25%        136.238895
+    50%        272.889272
+    75%        558.686918
+    max      15420.234110
+    Name: km_per_driving_day, dtype: float64
+
+
+
+The maximum value is 15,420 kilometers _per drive day_. This is physically impossible. Driving 100 km/hour for 12 hours is 1,200 km. It's unlikely many people averaged more than this each day they drove, so, for now, disregard rows where the distance in this column is greater than 1,200 km.
+
+
+```python
+plt.figure(figsize = (8,5))
+sns.histplot(x = df[df['km_per_driving_day'] <= 1200]['km_per_driving_day'], hue = df['label'], multiple = 'fill')   
+plt.ylabel('%');
+```
+
+
+    
+![png](output_50_0.png)
+    
+
+
+### **Churn rate per number of driving days**
+
+Create another histogram just like the previous one, only this time it should represent the churn rate for each number of driving days.
+
+
+```python
+plt.figure(figsize = (8,5))
+sns.histplot(x = df['driving_days'], hue = df['label'], bins = 'auto', discrete = True, multiple = 'fill')
+plt.ylabel('%');
+```
+
+
+    
+![png](output_52_0.png)
+    
+
+
+- Churn is highest (40%) among users with no app usage last month.
+
+- Users with more frequent use are less likely to churn.
+
+- Churn from non-users may stem from past dissatisfaction or reduced need (e.g., better public transit).
+
+- Heavy-user churn would indicate current dissatisfaction, which isn’t observed.
+
+- `km_per_driving_day` positively correlates with churn—users driving more km per day tend to churn more.
+
+- `driving_days` negatively correlates with churn—users driving on more days tend to churn less.
+
+### **Proportion of sessions that occurred in the last month**
+
+
+```python
+df['percent_sessions_in_last_month'] = df['sessions'] / df['total_sessions'] * 100
+```
+
+
+```python
+plt.figure(figsize = (5,5))
+sns.histplot(x = df['percent_sessions_in_last_month']);
+```
+
+
+    
+![png](output_56_0.png)
+    
+
+
+
+```python
+print(float(df['percent_sessions_in_last_month'].median()))
+print(float(df['n_days_after_onboarding'].median()))
+```
+
+    42.30970299276318
+    1741.0
+    
+
+
+```python
+plt.figure(figsize = (8,5))
+sns.histplot(x = df[df['percent_sessions_in_last_month'] >= 40]['n_days_after_onboarding']);
+```
+
+
+    
+![png](output_58_0.png)
+    
+
+
+- Half of users had ≥40% of sessions in the last month despite a median onboarding time of ~5 years.
+
+- Days since onboarding for these users are uniformly distributed.
+
+- This unusual spike in recent usage among long-term users warrants further investigation.
+
+## **Handling outliers**
+
+
+```python
+def impute_outliers(column_name):
+    min_val = df[column_name].min()
+    max_val = df[column_name].max()
+    percentile_95 = df[column_name].quantile(0.95)
+    df.loc[df[column_name] > percentile_95, column_name] = percentile_95
+```
+
+
+```python
+impute_outliers('sessions')
+impute_outliers('drives')
+impute_outliers('total_sessions')
+impute_outliers('driven_km_drives')
+impute_outliers('duration_minutes_drives')
+```
+
+
+```python
+df.describe()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>sessions</th>
+      <th>drives</th>
+      <th>total_sessions</th>
+      <th>n_days_after_onboarding</th>
+      <th>total_navigations_fav1</th>
+      <th>total_navigations_fav2</th>
+      <th>driven_km_drives</th>
+      <th>duration_minutes_drives</th>
+      <th>activity_days</th>
+      <th>driving_days</th>
+      <th>km_per_driving_day</th>
+      <th>percent_sessions_in_last_month</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+      <td>14999.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>7499.000000</td>
+      <td>76.568705</td>
+      <td>64.058204</td>
+      <td>184.031320</td>
+      <td>1749.837789</td>
+      <td>121.605974</td>
+      <td>29.672512</td>
+      <td>3939.632764</td>
+      <td>1789.647426</td>
+      <td>15.537102</td>
+      <td>12.179879</td>
+      <td>578.963113</td>
+      <td>44.925534</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>4329.982679</td>
+      <td>67.297958</td>
+      <td>55.306924</td>
+      <td>118.600463</td>
+      <td>1008.513876</td>
+      <td>148.121544</td>
+      <td>45.394651</td>
+      <td>2216.041510</td>
+      <td>1222.705167</td>
+      <td>9.004655</td>
+      <td>7.824036</td>
+      <td>1030.094384</td>
+      <td>28.691863</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.220211</td>
+      <td>4.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>60.441250</td>
+      <td>18.282082</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>3749.500000</td>
+      <td>23.000000</td>
+      <td>20.000000</td>
+      <td>90.661156</td>
+      <td>878.000000</td>
+      <td>9.000000</td>
+      <td>0.000000</td>
+      <td>2212.600607</td>
+      <td>835.996260</td>
+      <td>8.000000</td>
+      <td>5.000000</td>
+      <td>136.238895</td>
+      <td>19.622145</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>7499.000000</td>
+      <td>56.000000</td>
+      <td>48.000000</td>
+      <td>159.568115</td>
+      <td>1741.000000</td>
+      <td>71.000000</td>
+      <td>9.000000</td>
+      <td>3493.858085</td>
+      <td>1478.249859</td>
+      <td>16.000000</td>
+      <td>12.000000</td>
+      <td>272.889272</td>
+      <td>42.309703</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>11248.500000</td>
+      <td>112.000000</td>
+      <td>93.000000</td>
+      <td>254.192341</td>
+      <td>2623.500000</td>
+      <td>178.000000</td>
+      <td>43.000000</td>
+      <td>5289.861262</td>
+      <td>2464.362632</td>
+      <td>23.000000</td>
+      <td>19.000000</td>
+      <td>558.686918</td>
+      <td>68.721626</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>14998.000000</td>
+      <td>243.000000</td>
+      <td>201.000000</td>
+      <td>454.363204</td>
+      <td>3500.000000</td>
+      <td>1236.000000</td>
+      <td>415.000000</td>
+      <td>8889.794236</td>
+      <td>4668.899349</td>
+      <td>31.000000</td>
+      <td>30.000000</td>
+      <td>15420.234110</td>
+      <td>153.063707</td>
+    </tr>
+  </tbody>
+</table>
+</div>
