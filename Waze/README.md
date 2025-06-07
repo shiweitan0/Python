@@ -69,7 +69,7 @@ By analyzing user behavior data and building a predictive model, this project ai
 This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* and *Execute* for a clear and structured analysis.
 
 <details>
-  <summary><em>See detailed task-stage mapping</em></summary>
+  <summary><em>Click to see detailed task-stage mapping</em></summary>
 
 ## Milestones and Deliverables
 
@@ -800,7 +800,6 @@ def boxplotter(col, figsize = (5, 2), fliersize = 1):
     plt.show()
 ```
 
-
 ```python
 def histogrammer(col, figsize = (8, 5), discrete = False, bins = 'auto'):
     plt.figure(figsize = figsize)
@@ -808,60 +807,48 @@ def histogrammer(col, figsize = (8, 5), discrete = False, bins = 'auto'):
     plt.tight_layout()
     plt.show()
 ```
-
-### **`sessions`**
+### Individual Variable Analysis
+**`sessions`**
 
 _The number of occurrence of a user opening the app during the month_
 
 
 ```python
 boxplotter('sessions')
-```
-
-
+``` 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/82adb330-7d42-42f5-a02a-e553d43166fc" alt="Image" />
+</p>
     
-![png](output_8_0.png)
-    
-
-
-
 ```python
 histogrammer('sessions')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7ba087b3-043e-4bf9-91f8-b6b6f3b75567" alt="Image" />
+</p>
     
-![png](output_9_0.png)
-    
 
-
-### **`drives`**
+**`drives`**
 
 _An occurrence of driving at least 1 km during the month_
 
 
 ```python
 boxplotter('drives')
-```
-
-
+``` 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ff89a6da-d241-4a9c-94ab-905e01654863" alt="Image" />
+</p>
     
-![png](output_11_0.png)
-    
-
-
-
 ```python
 histogrammer('drives')
-```
-
-
+```    
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3a611215-275d-4557-93fc-b8eebc49e03f" alt="Image" />
+</p>
     
-![png](output_12_0.png)
-    
 
-
-### **`total_sessions`**
+**`total_sessions`**
 
 _A model estimate of the total number of sessions since a user has onboarded_
 
@@ -869,51 +856,39 @@ _A model estimate of the total number of sessions since a user has onboarded_
 ```python
 boxplotter('total_sessions')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a032aba6-cfef-4729-b815-9b588cae8635" alt="Image" />
+</p>
     
-![png](output_14_0.png)
-    
-
-
-
 ```python
 histogrammer('total_sessions')
-```
-
-
+```    
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/39884877-b2f1-46e7-8b5e-c11753b4059e" alt="Image" />
+</p>
     
-![png](output_15_0.png)
-    
 
-
-### **`n_days_after_onboarding`**
+**`n_days_after_onboarding`**
 
 _The number of days since a user signed up for the app_
 
 
 ```python
 boxplotter('n_days_after_onboarding')
-```
-
-
-    
-![png](output_17_0.png)
-    
-
-
+```  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5abc988e-7167-4200-9aa3-1969a4c4a64c" alt="Image" />
+</p>
 
 ```python
 histogrammer('n_days_after_onboarding')
-```
-
-
+``` 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/668b65cf-c7a8-4109-85af-7255d6c28d94" alt="Image" />
+</p>
     
-![png](output_18_0.png)
-    
 
-
-### **`driven_km_drives`**
+**`driven_km_drives`**
 
 _Total kilometers driven during the month_
 
@@ -921,25 +896,19 @@ _Total kilometers driven during the month_
 ```python
 boxplotter('driven_km_drives')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/e8733f5a-a25e-48b0-95a9-318cef1bc847" alt="Image" />
+</p>
     
-![png](output_20_0.png)
-    
-
-
-
 ```python
 histogrammer('driven_km_drives')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/411d4721-42f0-4230-85af-765c06095ddb" alt="Image" />
+</p>
     
-![png](output_21_0.png)
-    
 
-
-### **`duration_minutes_drives`**
+**`duration_minutes_drives`**
 
 _Total duration driven in minutes during the month_
 
@@ -947,25 +916,19 @@ _Total duration driven in minutes during the month_
 ```python
 boxplotter('duration_minutes_drives')
 ```
-
-
-    
-![png](output_23_0.png)
-    
-
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7136b3aa-f6b6-4f72-88c7-98d4ff5d94f2" alt="Image" />
+</p>
+  
 ```python
 histogrammer('duration_minutes_drives')
-```
-
-
+``` 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f59a364c-79fc-43c1-933e-a2f327a1290a" alt="Image" />
+</p>
     
-![png](output_24_0.png)
-    
 
-
-### **`activity_days`**
+**`activity_days`**
 
 _Number of days the user opens the app during the month_
 
@@ -973,25 +936,19 @@ _Number of days the user opens the app during the month_
 ```python
 boxplotter('activity_days')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/62c3cf09-e6ca-460c-b6f5-7825d6435c54" alt="Image" />
+</p>
     
-![png](output_26_0.png)
-    
-
-
-
 ```python
 histogrammer('activity_days', discrete = True)
-```
-
-
+```    
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/824b2af3-9209-4192-8c44-0dd8e632af15" alt="Image" />
+</p>
     
-![png](output_27_0.png)
-    
 
-
-### **`driving_days`**
+**`driving_days`**
 
 _Number of days the user drives (at least 1 km) during the month_
 
@@ -999,69 +956,56 @@ _Number of days the user drives (at least 1 km) during the month_
 ```python
 boxplotter('driving_days')
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/60842c38-9641-4175-b3c9-f1b65c88222d" alt="Image" />
+</p>
     
-![png](output_29_0.png)
-    
-
-
-
 ```python
 histogrammer('driving_days', discrete = True)
-```
-
-
+```  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5e64eb6e-27c0-4f1b-802a-89006bd46ed0" alt="Image" />
+</p>
     
-![png](output_30_0.png)
-    
-
-
 The above variables exhibited histograms that were either right-skewed or uniformly distributed.
 Notable patterns and insights were particularly evident in the following variables:
 - `total_sessions`: The median values in `sessions` and `total_sessions` were ~ 48 and ~160 respectively. This indicates that majority of users used the app in their last month.
 - `activity_days` and `driving_days`: One would expect these two variables share a strong correlation. However, `activity_days` has a uniform distribution, while, `driving_days` has a right skewed one. These discrepancies are apparent at the start and end of the variables respective histograms, where users `activity_days` and `driving_days` do not tally.
 
-### **`device`**
+**`device`**
 
 _The type of device a user starts a session with_
-
 
 ```python
 plt.figure(figsize = (3,3))
 plt.pie(df['device'].value_counts(), labels = df['device'].value_counts().index, autopct='%1.1f%%')
 plt.axis('equal');
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/45d1b695-33b0-435a-8403-44862cd84036" alt="Image" />
+</p>
     
-![png](output_33_0.png)
-    
-
-
 There are nearly twice as many iPhone users as Android users represented in this data.
 
-### **`label`**
+**`label`**
 
 _Binary target variable (“retained” vs “churned”) for if a user has churned anytime during the course of the month_
-
 
 ```python
 plt.figure(figsize = (3,3))
 plt.pie(df['label'].value_counts(), labels = df['label'].value_counts().index, autopct='%1.1f%%')
 plt.axis('equal');
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b3f17784-5a9f-4ab9-ab9e-5145cd3cb030" alt="Image" />
+</p>
     
-![png](output_36_0.png)
-    
-
-
 Less than 18% of the users churned.
 
-### **`driving_days` vs. `activity_days`**
 
+### Relational & Grouped Analysis
+
+**`driving_days` vs. `activity_days`**
 
 ```python
 plt.figure(figsize = (8,5))
@@ -1069,60 +1013,40 @@ plt.hist(x = [df['driving_days'], df['activity_days']], bins = 'auto', label = [
 plt.xlabel('counts')
 plt.legend();
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ff956dfc-71bd-46ef-bdf0-969dd34ac0d2" alt="Image" />
+</p>
     
-![png](output_39_0.png)
-    
-
-
-
 ```python
 plt.figure(figsize = (8,5))
 sns.stripplot(x = df['driving_days'],
               y = df['activity_days']);
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/24ca6906-f637-4364-b6b5-c9af71f5d510" alt="Image" />
+</p>
     
-![png](output_40_0.png)
-    
-
-
 The differing maximum values and inconsistencies between `driving_days` and `activity_days` challenge the assumption that these variables are closely aligned. While every driving day is also an activity day, the reverse isn't always true, as users may open the app to check routes or traffic without actually driving. Clarifying this discrepancy with the data team would be important before proceeding with further analysis.
 
-### **Retention by device**
-
+**Retention by device**
 
 ```python
 plt.figure(figsize = (8,5))
 sns.histplot(x = df['device'], hue = df['label'], multiple = 'dodge', stat = 'percent')
 plt.legend(labels=['Retained', 'Churned']);
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/59ff7d20-af4e-48ea-aaa1-88300cd2a473" alt="Image" />
+</p>
     
-![png](output_43_0.png)
-    
-
-
 The proportion of churned users to retained users is consistent between device types.
 
-### **Retention by kilometers driven per driving day**
-
-
+**Retention by kilometers driven per driving day**
 ```python
 df['km_per_driving_day'] = df['driven_km_drives'] / df['driving_days']
 df['km_per_driving_day'].describe()
 ```
-
-    \\?\C:\Users\Work\AppData\Roaming\jupyterlab-desktop\jlab_server\Lib\site-packages\pandas\core\nanops.py:1016: RuntimeWarning: invalid value encountered in subtract
-      sqr = _ensure_numeric((avg - values) ** 2)
     
-
-
-
-
     count    1.499900e+04
     mean              inf
     std               NaN
@@ -1133,20 +1057,13 @@ df['km_per_driving_day'].describe()
     max               inf
     Name: km_per_driving_day, dtype: float64
 
-
-
 The infinity values are due to there being values of zero in the `driving_days` column, where Pandas imputes a value of infinity in the corresponding rows of the new column because division by zero is undefined.
-
 
 ```python
 # Convert infinite values to zero
 df.loc[df['km_per_driving_day'] == np.inf, 'km_per_driving_day'] = 0
 df['km_per_driving_day'].describe()
 ```
-
-
-
-
     count    14999.000000
     mean       578.963113
     std       1030.094384
@@ -1157,39 +1074,28 @@ df['km_per_driving_day'].describe()
     max      15420.234110
     Name: km_per_driving_day, dtype: float64
 
-
-
-The maximum value is 15,420 kilometers _per drive day_. This is physically impossible. Driving 100 km/hour for 12 hours is 1,200 km. It's unlikely many people averaged more than this each day they drove, so, for now, disregard rows where the distance in this column is greater than 1,200 km.
-
+The maximum value is 15,420 kilometers _per drive day_,which is physically impossible. Therefore,  rows where the distance in this column is greater than 1,200 km would be excluded.
 
 ```python
 plt.figure(figsize = (8,5))
 sns.histplot(x = df[df['km_per_driving_day'] <= 1200]['km_per_driving_day'], hue = df['label'], multiple = 'fill')   
 plt.ylabel('%');
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/409acdde-c9d5-4a13-a71f-7d3656119afa" alt="Image" />
+</p>
     
-![png](output_50_0.png)
-    
 
-
-### **Churn rate per number of driving days**
-
-Create another histogram just like the previous one, only this time it should represent the churn rate for each number of driving days.
-
-
+**Churn rate per number of driving days**
 ```python
 plt.figure(figsize = (8,5))
 sns.histplot(x = df['driving_days'], hue = df['label'], bins = 'auto', discrete = True, multiple = 'fill')
 plt.ylabel('%');
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1652e069-1d7c-430f-9346-770a5bf77a37" alt="Image" />
+</p>
     
-![png](output_52_0.png)
-    
-
 
 - Churn is highest (40%) among users with no app usage last month.
 
@@ -1203,55 +1109,42 @@ plt.ylabel('%');
 
 - `driving_days` negatively correlates with churn—users driving on more days tend to churn less.
 
-### **Proportion of sessions that occurred in the last month**
-
-
+**Proportion of sessions that occurred in the last month**
 ```python
 df['percent_sessions_in_last_month'] = df['sessions'] / df['total_sessions'] * 100
 ```
-
-
 ```python
 plt.figure(figsize = (5,5))
 sns.histplot(x = df['percent_sessions_in_last_month']);
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/12eb1463-f318-4be0-a592-33fcce0d4aa3" alt="Image" />
+</p>
     
-![png](output_56_0.png)
-    
-
-
-
 ```python
 print(float(df['percent_sessions_in_last_month'].median()))
 print(float(df['n_days_after_onboarding'].median()))
 ```
-
     42.30970299276318
     1741.0
     
-
-
 ```python
 plt.figure(figsize = (8,5))
 sns.histplot(x = df[df['percent_sessions_in_last_month'] >= 40]['n_days_after_onboarding']);
 ```
-
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/afbb42cc-8fe9-419f-b775-72f47ec99fbf" alt="Image" />
+</p>
     
-![png](output_58_0.png)
-    
-
-
 - Half of users had ≥40% of sessions in the last month despite a median onboarding time of ~5 years.
 
 - Days since onboarding for these users are uniformly distributed.
 
 - This unusual spike in recent usage among long-term users warrants further investigation.
 
-## **Handling outliers**
+## Handling outliers
 
+The boxplots for individual variables revealed several extreme values, highlighting the presence of outliers that could skew the analysis. To address this, values beyond the 95th percentile were capped to reduce their influence while preserving overall data integrity.
 
 ```python
 def impute_outliers(column_name):
@@ -1261,7 +1154,6 @@ def impute_outliers(column_name):
     df.loc[df[column_name] > percentile_95, column_name] = percentile_95
 ```
 
-
 ```python
 impute_outliers('sessions')
 impute_outliers('drives')
@@ -1270,28 +1162,10 @@ impute_outliers('driven_km_drives')
 impute_outliers('duration_minutes_drives')
 ```
 
-
 ```python
 df.describe()
 ```
-
-
-
-
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
