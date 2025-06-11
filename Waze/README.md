@@ -1395,7 +1395,7 @@ df.describe()
 
 
 
-# Statistical Hypothesis Testing
+# ⚖️ Statistical Hypothesis Testing
 
 > While differences in averages are observed across groups, hypothesis testing is necessary to determine whether these differences are statistically significant or simply due to random variation in the sample data.
 
