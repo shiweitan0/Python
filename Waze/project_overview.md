@@ -7,7 +7,9 @@
 > 
 > _📑 Tip: Use GitHub’s Outline tab to quickly navigate through the sections of this README._
 
-# 📌 Context and Objective
+# Project Structure
+
+## 📌 Context and Objective
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/955e8943-b5e6-4aa4-a70c-fc4c311d5f45" alt="Waze Logo" width="200" height="200" />
@@ -15,7 +17,7 @@
 
 This project focuses on predicting monthly user churn for Waze, a community-driven navigation app that partners with users, map editors, and organizations worldwide to improve the driving experience. It supports Waze’s broader effort to boost user growth and increase retention.
 
-## Key Stakeholders
+### Key Stakeholders
 
 <div align="center">
   <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; text-align: center;">
@@ -64,7 +66,7 @@ By analyzing user behavior data and building a predictive model, this project ai
 
 **The goal is to build a machine learning model that identifies users at risk of leaving, enabling Waze to engage them proactively with targeted retention strategies that enhance user satisfaction and drive business growth.**
 
-## Data Dictionary
+### Data Dictionary
 
 <div>
 <table border="1" class="dataframe">
@@ -140,14 +142,14 @@ By analyzing user behavior data and building a predictive model, this project ai
 </table>
 </div>
 
-# 🧭 Roadmap
+## 🧭 Roadmap
 
 This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* and *Execute* for a clear and structured analysis.
 
 <details>
   <summary><em>Click to see detailed task-stage mapping</em></summary>
 
-## Milestones and Deliverables
+### Milestones and Deliverables
 
 <div align="center">
   <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; text-align: center;">
@@ -277,7 +279,7 @@ This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* an
 
 ---
 
-## Estimated Timeline
+### Estimated Timeline
 
 - **Milestone 1**: 1–2 days  
 - **Milestone 2**: 2–3 weeks  
@@ -288,9 +290,15 @@ This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* an
 </details>
 
 
-# [🧹 Data Cleaning](./01_data_cleaning.ipynb)  
+## [🧹 Data Cleaning](./01_data_cleaning.ipynb)
 
-# 📊 Exploratory Data Analysis
+Handles missing values, fixes data types, and removes inconsistencies.
 
-# ⚖️ Statistical Hypothesis Testing
+## [📊 Exploratory Data Analysis](./02_exploratory_data_analysis.ipynb)
+
+Includes visualizations and statistical summaries to uncover insights.
+
+## [⚖️ Statistical Hypothesis Testing](./03_hypothesis_testing.ipynb)
+
+Performs t-tests to assess group differences in user behavior.
 
