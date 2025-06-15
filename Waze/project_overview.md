@@ -288,7 +288,7 @@ This project followed the P.A.C.E framework of *Plan*, *Analyze*, *Construct* an
 </details>
 
 
-# 🧹 Data Cleaning
+# [🧹 Data Cleaning](./01_data_cleaning.ipynb)  
 
 # 📊 Exploratory Data Analysis
 
