@@ -64,7 +64,7 @@ By analyzing user behavior data and building a predictive model, this project ai
 * **Uncover** when churn typically occurs  
 * **Understand** potential reasons behind churn  
 
-**The goal is to build a machine learning model that identifies users at risk of leaving, enabling Waze to engage them proactively with targeted retention strategies that enhance user satisfaction and drive business growth.**
+**The goal is to build a machine learning model that identifies users at risk of leaving (churn), enabling Waze to engage them proactively with targeted retention strategies that enhance user satisfaction and drive business growth.**
 
 ### Data Dictionary
 
