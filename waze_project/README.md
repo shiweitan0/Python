@@ -302,3 +302,7 @@ Includes visualizations and statistical summaries to uncover insights.
 
 Performs t-tests to assess group differences in user behavior.
 
+## [📉 Regression Analysis](./04_regression_analysis.ipynb)
+
+Fit binomial logistic regression model to identify key predictors and evaluate their impact on user churn.
+
