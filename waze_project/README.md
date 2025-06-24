@@ -306,3 +306,7 @@ Performs t-tests to assess group differences in user behavior.
 
 Fit binomial logistic regression model to identify key predictors and evaluate their impact on user churn.
 
+## [🧠 Machine Learning](./05_machine_learning.ipynb)
+
+Train and evaluate classification models (Random Forest, XGBoost) to identify key churn predictors and assess model performance on unseen data.
+
