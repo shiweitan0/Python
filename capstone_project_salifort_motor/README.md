@@ -91,7 +91,7 @@ The goal is to build a predictive model that flags at-risk employees, enabling S
 
 
 <div style="text-align: center;">
-  <a href="https://github.com/your-username/your-repo-name/blob/main/your-notebook.ipynb" target="_blank">
+  <a href="https://github.com/shiweitan0/Python/blob/main/capstone_project_salifort_motor/salifort_motor_project.ipynb" target="_blank">
     🔗 View Full Analysis Notebook
   </a>
 </div>
