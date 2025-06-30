@@ -88,3 +88,11 @@ The goal is to build a predictive model that flags at-risk employees, enabling S
     </table>
   </div>
 </div>
+
+
+<div style="text-align: center;">
+  <a href="https://github.com/your-username/your-repo-name/blob/main/your-notebook.ipynb" target="_blank">
+    🔗 View Full Analysis Notebook
+  </a>
+</div>
+
