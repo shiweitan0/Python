@@ -16,7 +16,7 @@
 This project focuses on recognizing handwritten digits (0–9) from the MNIST dataset using a neural network classifier. It supports broader applications in digit-based automation, such as postal code reading, bank check processing, and digital form entry, by demonstrating how deep learning can accurately interpret human handwriting.
 
 <div style="text-align: center;">
-  <a href="https://github.com/shiweitan0/Python/blob/main/capstone_project_salifort_motor/salifort_motor_project.ipynb" target="_blank">
+  <a href="https://github.com/shiweitan0/Python/blob/main/mnist_project/C2_W2_Assignment.ipynb" target="_blank">
     🔗 View Full Analysis Notebook
   </a>
 </div>
